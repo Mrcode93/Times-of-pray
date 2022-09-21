@@ -1,0 +1,129 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: linear-gradient(to bottom, #F6AE2D, #F26419);
+  width: 100%;
+  min-height: 100vh;
+  font-family: "Cairo", sans-serif;
+}
+
+header {
+  width: 100%;
+  height: 120px;
+  background: rgb(45, 45, 45);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.563);
+  -webkit-backdrop-filter: blur(3px);
+          backdrop-filter: blur(3px);
+  border-bottom: solid 1px #55DDE0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: column;
+  padding: 10px 20px;
+}
+header h1 {
+  color: #F6AE2D;
+}
+header .city {
+  width: 150px;
+  height: 40px;
+  border-radius: 10px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  -o-border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 0 10px;
+  background-color: #F26419;
+}
+header .city span {
+  margin-left: 20px;
+  color: #fff;
+  font-size: 1.3em;
+  font-weight: 500;
+}
+header .city ion-icon {
+  color: white;
+  font-size: 25px;
+}
+
+.center {
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-direction: column;
+}
+.center .time {
+  color: rgb(22, 22, 22);
+  height: 75px;
+  width: 100%;
+  padding: 5px 10px;
+  border-radius: 10px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  -o-border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  font-size: 1.5em;
+  font-weight: 700;
+  font-family: "Share Tech Mono", monospace;
+}
+.center .time .date {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  height: 100px;
+}
+.center .container {
+  width: 90%;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  padding: 10px;
+  background: transparent;
+  border-radius: 10px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 2fr));
+  grid-gap: 1rem;
+  margin-top: 40px;
+  direction: rtl;
+}
+.center .container .box {
+  background: #33658A;
+  -webkit-backdrop-filter: blur(10px);
+          backdrop-filter: blur(10px);
+  height: 200px;
+  border-radius: 7px;
+  -webkit-border-radius: 7px;
+  -moz-border-radius: 7px;
+  -ms-border-radius: 7px;
+  -o-border-radius: 7px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  flex-direction: column;
+}
+.center .container .box .name {
+  font-size: 2.3em;
+  margin-bottom: 20px;
+  color: rgb(255, 255, 255);
+  font-weight: bold;
+}
+.center .container .box .times {
+  font-family: "Share Tech Mono", monospace;
+  color: #fff;
+  font-size: 1.9em;
+}/*# sourceMappingURL=style.css.map */
