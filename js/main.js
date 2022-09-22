@@ -80,6 +80,7 @@ function getTimes() {
                     lon +
                     "&method=8&month=" +
                     month +
+                    1 +
                     "&year=" +
                     year
                 )
