@@ -1,120 +1,152 @@
-    * {
-        padding: 0;
-        margin: 0;
-        box-sizing: border-box;
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-image: url(../images/amer.jpeg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    width: 100%;
+    min-height: 100vh;
+    font-family: 'Cairo', sans-serif;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+header {
+    width: 100%;
+    height: 120px;
+    background: rgb(45, 45, 45);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.563);
+    backdrop-filter: blur(3px);
+    border-bottom: solid 1px #55DDE0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: column;
+    padding: 10px 20px;
+    h1 {
+        color: #F6AE2D;
     }
-    
-    body {
-        background: linear-gradient(to bottom, #F6AE2D, #F26419);
-        // background-image: url('../images/kisspng-islamic-architecture-mosque-quran-muslim-islamic-churches-5a750bd09cde50.7800208715176201766425.png');
-        // background-size: 100% 60%;
-        // background-repeat: no-repeat;
-        // background-position: bottom center;
-        width: 100%;
-        min-height: 100vh;
-        font-family: 'Cairo', sans-serif;
-    }
-    
-    header {
-        width: 100%;
-        height: 120px;
-        background: rgb(45, 45, 45);
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.563);
-        backdrop-filter: blur(3px);
-        border-bottom: solid 1px #55DDE0;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        flex-direction: column;
-        padding: 10px 20px;
-        h1 {
-            color: #F6AE2D;
-        }
-        .city {
-            width: 150px;
-            height: 40px;
-            border-radius: 10px;
-            -webkit-border-radius: 10px;
-            -moz-border-radius: 10px;
-            -ms-border-radius: 10px;
-            -o-border-radius: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: flex-start;
-            padding: 0 10px;
-            background-color: #F26419;
-            span {
-                margin-left: 20px;
-                color: #fff;
-                font-size: 1.3em;
-                font-weight: 500
-            }
-            ion-icon {
-                color: white;
-                font-size: 25px;
-            }
-        }
-    }
-    
-    .center {
-        height: 100%;
-        width: 100%;
-        overflow: hidden;
+    .city {
+        width: 150px;
+        height: 40px;
+        border-radius: 10px;
+        -webkit-border-radius: 10px;
+        -moz-border-radius: 10px;
+        -ms-border-radius: 10px;
+        -o-border-radius: 10px;
         display: flex;
         align-items: center;
         justify-content: flex-start;
-        flex-direction: column;
-        .time {
-            color: rgb(22, 22, 22);
-            height: 75px;
-            width: 100%;
-            padding: 5px 10px;
-            border-radius: 10px;
-            -webkit-border-radius: 10px;
-            -moz-border-radius: 10px;
-            -ms-border-radius: 10px;
-            -o-border-radius: 10px;
+        padding: 0 10px;
+        background-color: #F26419;
+        span {
+            margin-left: 20px;
+            color: #fff;
+            font-size: 1.3em;
+            font-weight: 500
+        }
+        ion-icon {
+            color: white;
+            font-size: 25px;
+        }
+    }
+}
+
+.center {
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-direction: column;
+    .time {
+        color: rgb(22, 22, 22);
+        height: 75px;
+        width: 100%;
+        padding: 5px 10px;
+        border-radius: 10px;
+        -webkit-border-radius: 10px;
+        -moz-border-radius: 10px;
+        -ms-border-radius: 10px;
+        -o-border-radius: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        font-size: 1.5em;
+        font-weight: 700;
+        font-family: 'Share Tech Mono', monospace;
+        .date {
             display: flex;
             align-items: center;
-            justify-content: space-around;
-            font-size: 1.5em;
-            font-weight: 700;
-            font-family: 'Share Tech Mono', monospace;
-            .date {
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                flex-direction: column;
-                height: 100px
-            }
+            justify-content: center;
+            flex-direction: column;
+            height: 100px
         }
-        .container {
-            width: 90%;
-            height: fit-content;
-            padding: 10px;
-            background: transparent;
-            border-radius: 10px;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 2fr));
-            grid-gap: 1rem;
-            margin-top: 40px;
-            direction: rtl;
-            .box {
-                background: #33658A;
-                backdrop-filter: blur(10px);
-                height: 200px;
-                border-radius: 7px;
-                -webkit-border-radius: 7px;
-                -moz-border-radius: 7px;
-                -ms-border-radius: 7px;
-                -o-border-radius: 7px;
-                box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
-                display: flex;
-                align-items: center;
-                justify-content: space-around;
-                flex-direction: column;
+    }
+    .container {
+        width: 90%;
+        height: fit-content;
+        padding: 10px;
+        background: transparent;
+        border-radius: 10px;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 2fr));
+        grid-gap: 1rem;
+        margin-top: 40px;
+        direction: rtl;
+        justify-content: center;
+        align-content: center;
+        text-align: center;
+        .box {
+            border: rgb(255, 255, 255) 2px solid;
+            background: #33658A;
+            backdrop-filter: blur(10px);
+            height: 200px;
+            border-radius: 15px;
+            -webkit-border-radius: 15px;
+            -moz-border-radius: 15px;
+            -ms-border-radius: 15px;
+            -o-border-radius: 15px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            .name {
+                font-size: 2.3em;
+                margin-bottom: 0px;
+                color: rgb(255, 255, 255);
+                font-weight: bold;
+            }
+            .times {
+                font-family: 'Share Tech Mono', monospace;
+                color: #fff;
+                font-size: 1.9em;
+            }
+            &.active {
+                border: 4px solid #44ff33;
+                transform: scale(1.2);
+                z-index: 5;
+                margin: 15px;
+                border-radius: 30px;
+                -webkit-border-radius: 30px;
+                -moz-border-radius: 30px;
+                -ms-border-radius: 30px;
+                -o-border-radius: 30px;
+                box-shadow: 0 0 20px #44ff3385;
+                -webkit-transform: scale(1.2);
+                -moz-transform: scale(1.2);
+                -ms-transform: scale(1.2);
+                -o-transform: scale(1.2);
                 .name {
-                    font-size: 2.3em;
+                    font-size: 1.2em;
                     margin-bottom: 20px;
                     color: rgb(255, 255, 255);
                     font-weight: bold;
@@ -122,8 +154,43 @@
                 .times {
                     font-family: 'Share Tech Mono', monospace;
                     color: #fff;
-                    font-size: 1.9em;
+                    font-size: 1.1em;
                 }
             }
         }
     }
+}
+
+.line {
+    height: 50px;
+    width: 90%;
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
+    color: #55f62d;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    font-size: 0.7em;
+    display: none;
+    & #times {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: rgb(252, 225, 72);
+        font-size: 1.3em;
+        width: 100%;
+        height: 30px;
+        z-index: 100;
+    }
+}
+
+.box.active {
+    margin: 0;
+    .line {
+        display: flex;
+    }
+}
