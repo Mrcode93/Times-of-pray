@@ -86,14 +86,15 @@ function getTimes() {
                 )
                 .then((response) => response.json())
                 .then((data) => {
+                    next(data);
                     //date
-                    calender.innerHTML = data.data[day].date.readable;
-                    hijri.innerHTML =
-                        data.data[day].date.hijri.day +
+                    calender.innerHTML = data.data[day - 1].date.readable;
+                    hijri.innerHTML = +data.data[day - 1].date.hijri.day +
+                        1 +
                         " " +
-                        data.data[day].date.hijri.year +
+                        data.data[day - 1].date.hijri.year +
                         " " +
-                        data.data[day].date.hijri.month.ar;
+                        data.data[day - 1].date.hijri.month.ar;
                     //fajer
                     let fajr = data.data[day - 1].timings.Fajr;
                     fjr.innerHTML = fajr.slice(0, fajr.length - 5) + " AM";
