@@ -88,7 +88,7 @@ function getTimes() {
                 .then((data) => {
                     next(data);
                     //date
-                    calender.innerHTML = data.data[day - 1].date.readable;
+                    calender.innerHTML = data.data[day].date.readable;
                     hijri.innerHTML =
                         data.data[day - 1].date.hijri.day +
                         " " +
