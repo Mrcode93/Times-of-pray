@@ -18,7 +18,6 @@ function city() {
                 )
                 .then((response) => response.json())
                 .then((data) => {
-                    // console.log(data.name);
                     myCity.innerHTML = data.name;
                 });
         });
@@ -51,13 +50,9 @@ function showTime() {
     let currentTime = hour + ":" + min + ":" + sec + am_pm;
     times.innerHTML = currentTime;
 }
+
 showTime();
-let fjr = document.querySelector(".fajr .times");
-let sunrise = document.querySelector(".sun-rise .times");
-let duhr = document.querySelector(".duhr .times");
-let asr = document.querySelector(".asr .times");
-let mgrb = document.querySelector(".maghrib .times");
-let isha = document.querySelector(".isha .times");
+let container = document.querySelector(".container");
 // get times of  prayers
 function getTimes() {
     let date = new Date();
@@ -86,7 +81,6 @@ function getTimes() {
                 )
                 .then((response) => response.json())
                 .then((data) => {
-                    next(data);
                     //date
                     calender.innerHTML = data.data[day - 1].date.readable;
                     hijri.innerHTML = +data.data[day - 1].date.hijri.day +
@@ -95,110 +89,125 @@ function getTimes() {
                         data.data[day - 1].date.hijri.year +
                         " " +
                         data.data[day - 1].date.hijri.month.ar;
+                    let array = [];
                     //fajer
-                    let fajr = data.data[day - 1].timings.Fajr;
-                    fjr.innerHTML = fajr.slice(0, fajr.length - 5) + " AM";
-                    //sun-rise
-                    let sun = data.data[day - 1].timings.Sunrise;
-                    sunrise.innerHTML = sun.slice(0, sun.length - 5) + " AM";
-                    //dhur
-                    let dhr = data.data[day - 1].timings.Dhuhr;
-                    duhr.innerHTML = dhr.slice(0, dhr.length - 5) + " PM";
-                    // assur
-                    let asur = data.data[day - 1].timings.Asr;
-                    asr.innerHTML = asur.slice(0, asur.length - 5) + " PM";
-                    //mugrib
-                    let magrb = data.data[day - 1].timings.Maghrib;
-                    mgrb.innerHTML = magrb.slice(0, magrb.length - 5) + " PM";
-                    //ishaa
-                    let ishaa = data.data[day - 1].timings.Isha;
-                    isha.innerHTML = ishaa.slice(0, ishaa.length - 5) + " PM";
+                    let names = document.querySelectorAll(".box .times");
+
+                    let times = data.data[day - 1].timings;
+
+                    //!================================================================
+                    for (let i in times) {
+                        array.push(times[i]);
+                    }
+                    array = [...new Set(array)];
+                    array = array.slice(0, -4);
+                    for (let x = 0; x < array.length; x++) {
+                        array[x] = array[x].replace(" (+03)", "");
+                        for (let i = 0; i < names.length; i++) {
+                            if (x == i) {
+                                names[i].innerHTML = array[x];
+                            }
+                        }
+                    }
+                    line(array);
+                    setNextPrayer(names);
                 });
         });
     }
 }
 window.addEventListener("DOMContentLoaded", getTimes());
-//nex pray time
-function next(data) {
-    let time = new Date(Date.now());
+
+//line width
+let row = document.querySelector(".row .hour");
+let amer = document.querySelectorAll(".now");
+
+function line(array) {
+    let time = new Date();
+    let hh = time.getHours();
+    let mm = time.getMinutes();
+    mm = mm < 10 ? "0" + mm : mm;
+    let tt = hh + "" + mm;
+    tt = Math.floor((Number((tt / 10) * 3) / 630) * 100);
+    if (tt >= 100) {
+        tt = 0;
+    }
+    row.style.cssText = `width: ${tt}%`;
+    for (let e = 0; e < array.length; e++) {
+        let x = array[e].replace(":", "");
+        x = (((x / 10) * 3) / 630) * 100;
+        x = Math.round(x);
+        for (let i = 0; i < amer.length; i++) {
+            if (e == i) {
+                amer[i].style.cssText = `right: ${x}%; visibility: visible;`;
+                amer[i].classList.add("active");
+                if (tt >= x) {
+                    amer[i].classList.add("done");
+                }
+            }
+        }
+    }
+}
+
+//next step
+function setNextPrayer(names) {
+    let time = new Date();
     let year = time.getFullYear();
-    let month = time.getMonth() + 1;
+    let month = time.getMonth();
     let day = time.getDate();
     let hour = time.getHours();
     let min = time.getMinutes();
     let sec = time.getSeconds();
-    am_pm = " AM";
-    if (hour > 12) {
-        hour -= 12;
-        am_pm = " PM";
-    }
-    if (hour == 0) {
-        hour = 12;
-        am_pm = "AM";
-    }
-    //fajer
-    let fajr = data.data[day - 1].timings.Fajr;
-    fjr.innerHTML = fajr.slice(0, fajr.length - 5) + " AM";
-    //sun-rise
-    let sun = data.data[day - 1].timings.Sunrise;
-    sunrise.innerHTML = sun.slice(0, sun.length - 5) + " AM";
-    //dhur
-    let dhr = data.data[day - 1].timings.Dhuhr;
-    duhr.innerHTML = dhr.slice(0, dhr.length - 5) + " PM";
-    // assur
-    let asur = data.data[day - 1].timings.Asr;
-    asr.innerHTML = asur.slice(0, asur.length - 5) + " PM";
-    //mugrib
-    let magrb = data.data[day - 1].timings.Maghrib;
-    mgrb.innerHTML = magrb.slice(0, magrb.length - 5) + " PM";
-    //ishaa
-    let ishaa = data.data[day - 1].timings.Isha;
-    isha.innerHTML = ishaa.slice(0, ishaa.length - 5) + " PM";
     min = min < 10 ? "0" + min : min;
     hour = hour < 10 ? "0" + hour : hour;
-    let one = fajr.slice(0, fajr.length - 6);
-    let two = sun.slice(0, sun.length - 6);
-    let three = dhr.slice(0, fajr.length - 6);
-    let four = asur.slice(0, fajr.length - 6);
-    let five = magrb.slice(0, fajr.length - 6);
-    let six = ishaa.slice(0, fajr.length - 6);
-    //currentTime
-    let currentTimeer = hour + ":" + min + ":" + sec;
-    let array = [one, two, three, four, five, six];
-    let divArr = [fjr, sunrise, duhr, asr, mgrb, isha];
-    for (let i = 0; i < array.length; i++) {
-        //next time
-        let timeStr1 = array[i].replace(":", "");
-        //current time
-        let timeStr2 = currentTimeer.replace(":", "").replace(":", "").slice(0, -2);
+    var currentTime = hour + ":" + min;
 
-        if (timeStr1 > timeStr2) {
-            // console.log(parseInt(timeStr1.replace(regex, ""), 10));
-            var x = setInterval(function() {
-                let nextTime = `${year} ${month} ${day} ${array[i]}`;
-                let d1 = new Date(nextTime);
-                var now = new Date();
+    var nextPrayer;
+    for (var i = 0; i < names.length; i++) {
+        // names[i] = names[i].innerHTML;
 
-                var t = d1.getTime() - now.getTime();
-                hour = Math.floor((t % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                min = Math.floor((t % (1000 * 60 * 60)) / (1000 * 60));
-                var sec = Math.floor((t % (1000 * 60)) / 1000);
-                document
-                    .querySelectorAll("#times")
-                    .forEach(
-                        (element) =>
-                        (element.innerHTML = hour + "h " + min + "m " + sec + "s ")
-                    );
-            }, 1000);
-            let num = timeStr1.replace(":", "");
-            divArr.forEach((e) => {
-                let element = e.innerHTML.replace(":", "");
-                element = element.slice(0, element.length - 4);
-                if (Number(element) === Number(num)) {
-                    e.parentNode.classList.add("active");
-                }
-            });
-            break;
-        }
+        if (currentTime <= names[0].innerHTML) nextPrayer = names[0];
+        else if (currentTime <= names[1].innerHTML) nextPrayer = names[1];
+        else if (currentTime <= names[2].innerHTML) nextPrayer = names[2];
+        else if (currentTime <= names[3].innerHTML) nextPrayer = names[3];
+        else if (currentTime <= names[4].innerHTML) nextPrayer = names[4];
+        else nextPrayer = names[5];
     }
+
+    // if (currentTime <= fajerTime) nextPrayer = "fajr";
+    // else if (currentTime <= eshragTime) nextPrayer = "eshrag";
+    // else if (currentTime <= duhurTime) nextPrayer = "duhur";
+    // else if (currentTime <= asrTime) nextPrayer = "asr";
+    // else if (currentTime <= maghribTime) nextPrayer = "maghrib";
+    // else nextPrayer = "isha";
+
+    let nextTimer = nextPrayer.innerHTML;
+
+    let mainDiv = nextPrayer.parentNode;
+    let container = document.querySelectorAll(".box");
+    mainDiv.classList.add("next");
+    container.forEach((e) => {
+        if (e.classList.contains("next")) {
+            e.classList.add("amer");
+        }
+    });
+
+    let amer = document.querySelector(".amer #next");
+
+    x = setInterval(function() {
+        let d1 = new Date(`${year} ${month + 1} ${day} ${nextTimer}:00`);
+        var now = new Date();
+
+        var t = d1.getTime() - now.getTime();
+        hour = Math.floor((t % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        min = Math.floor((t % (1000 * 60 * 60)) / (1000 * 60));
+        sec = Math.floor((t % (1000 * 60)) / 1000);
+        min = min < 10 ? "0" + min : min;
+        hour = hour < 10 ? "0" + hour : hour;
+        sec = sec < 10 ? "0" + sec : sec;
+        amer.innerHTML = ` الوقت المتبقي:
+        ${hour}:${min}:${sec}`;
+        if (x === 0) {
+            window.location.reload();
+        }
+    }, 1000);
 }
